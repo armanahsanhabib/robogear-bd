@@ -12,7 +12,7 @@ const ProductCard = (props) => {
       <a href="/product-details">
         <div className="img flex flex-col justify-center items-center mb-3">
           <img
-            src={`http://localhost:3000/product_images/${props.product_image}`}
+            src={`https://robogear-bd-97bac4d16518.herokuapp.com/product_images/${props.product_image}`}
             alt={props.product_name}
             className="h-[200px] w-full rounded-lg object-cover"
           />

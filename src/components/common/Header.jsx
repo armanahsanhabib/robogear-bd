@@ -14,7 +14,7 @@ const Header = () => {
     const fetchSuggestions = async () => {
       try {
         const response = await fetch(
-          "http://localhost:3000/products/all-product"
+          "https://robogear-bd-97bac4d16518.herokuapp.com/products/all-product"
         );
         const data = await response.json();
 
@@ -68,7 +68,7 @@ const Header = () => {
                 >
                   <div className="left">
                     <img
-                      src={`http://localhost:3000/product_images/${product.product_image}`}
+                      src={`https://robogear-bd-97bac4d16518.herokuapp.com/product_images/${product.product_image}`}
                       alt={product.product_name}
                       className="h-[45px]"
                     />

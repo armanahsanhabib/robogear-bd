@@ -13,7 +13,7 @@ const HomePage = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        "http://localhost:3000/products/all-product"
+        "https://robogear-bd-97bac4d16518.herokuapp.com/products/all-product"
       );
 
       if (!response.ok) {
