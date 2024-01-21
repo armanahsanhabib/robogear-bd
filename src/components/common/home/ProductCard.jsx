@@ -9,7 +9,7 @@ const ProductCard = (props) => {
 
   return (
     <div className="p-3 bg-white rounded-lg hover:shadow-lg border transition-all flex flex-col justify-between">
-      <a href="/product-details">
+      <a href={`/product-details?id=${props.productId}`}>
         <div className="img flex flex-col justify-center items-center mb-3">
           <img
             src={`https://robogear-bd-97bac4d16518.herokuapp.com/product_images/${props.product_image}`}

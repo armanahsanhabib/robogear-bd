@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+/* eslint-disable react/prop-types */
 import { GrNext } from "react-icons/gr";
 import Ad1 from "../assets/images/home/ad1.jpg";
 import Ad2 from "../assets/images/home/ad2.jpg";
@@ -7,30 +7,7 @@ import ImageSlider from "../components/common/home/ImageSlider";
 import MoreProductsCard from "../components/common/home/MoreProductsCard";
 import ProductCard from "../components/common/home/ProductCard";
 
-const HomePage = () => {
-  const [products, setProducts] = useState([]);
-
-  const fetchData = async () => {
-    try {
-      const response = await fetch(
-        "https://robogear-bd-97bac4d16518.herokuapp.com/products/all-product"
-      );
-
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-
-      const result = await response.json();
-      setProducts(result);
-    } catch (error) {
-      console.error("Error fetching data:", error.message);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
+const HomePage = (props) => {
   return (
     <div className="bg-gray-100 py-[50px]">
       <div className="container px-5 mx-auto">
@@ -58,12 +35,13 @@ const HomePage = () => {
             </a>
           </div>
           <div className="product_container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-5">
-            {products.map((products) => (
+            {props.products.map((products) => (
               <ProductCard
                 key={products._id}
                 product_name={products.product_name}
                 selling_price={products.selling_price}
                 product_image={products.product_image}
+                productId={products.product_id}
               />
             ))}
             <MoreProductsCard />

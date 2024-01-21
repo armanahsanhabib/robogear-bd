@@ -1,7 +1,14 @@
-import { useState } from "react";
-import Arduino from "../assets/images/home/arduino.jpg";
+/* eslint-disable react/prop-types */
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const ProductDetailsPage = () => {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const productId = queryParams.get("id");
+
+  const [productDetails, setProductDetails] = useState([]);
+
   // Initialize quantity state with a default value
   const [quantity, setQuantity] = useState(1);
 
@@ -25,23 +32,51 @@ const ProductDetailsPage = () => {
     },
   ];
 
+  // fetch product details data
+  const fetchProductDetailsData = async () => {
+    try {
+      const response = await fetch(
+        `https://robogear-bd-97bac4d16518.herokuapp.com/products/product-details?id=${productId}`
+      );
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const result = await response.json();
+      setProductDetails(result);
+    } catch (error) {
+      console.error("Error fetching data:", error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchProductDetailsData();
+  }, [productId]);
+
   return (
     <div className="bg-gray-100 py-[50px]">
       <div className="container px-5 mx-auto">
         <div className="main_product grid gap-10 grid-cols-2">
           <div className="left h-[450px] flex items-center justify-center bg-white rounded-xl overflow-hidden">
             <img
-              src={Arduino}
+              src={`https://robogear-bd-97bac4d16518.herokuapp.com/product_images/${productDetails.product_image}`}
               alt="product image"
               className="transition-all object-cover"
             />
           </div>
           <div className="right flex flex-col gap-y-5 border bg-white p-5 rounded-xl">
-            <h1 className="text-3xl font-semibold">Arduino UNO R3</h1>
-            <p className="font-[300] text-gray-500">{`#CA5676245`}</p>
+            <h1 className="text-3xl font-semibold">
+              {productDetails.product_name}
+            </h1>
+            <p className="font-[300] text-gray-500">{`#RGBD-${productDetails.product_id}`}</p>
             <h2 className="price mb-3">
-              <div className="text-lg text-gray-500 font-[300] line-through mr-2">{`850.00`}</div>
-              <div className="text-3xl text-blue-600 font-semibold">{`650.00 ৳`}</div>
+              <div className="text-lg text-gray-500 font-[300] line-through mr-2">
+                query string: {productId}
+              </div>
+              <div className="text-3xl text-blue-600 font-semibold">
+                {/* {productDetails.selling_price} */}
+              </div>
             </h2>
             <div className="qty flex">
               <span
