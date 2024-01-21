@@ -2,10 +2,10 @@
 import { FaCartPlus } from "react-icons/fa6";
 
 const ProductCard = (props) => {
-  // const truncatedProductName =
-  //   props.product_name.length > 20
-  //     ? `${props.product_name.slice(0, 20)}...`
-  //     : props.product_name;
+  const truncatedProductName =
+    props.product_name.length > 20
+      ? `${props.product_name.slice(0, 20)}...`
+      : props.product_name;
 
   return (
     <div className="p-3 bg-white rounded-lg hover:shadow-lg border transition-all flex flex-col justify-between">
@@ -19,8 +19,8 @@ const ProductCard = (props) => {
         </div>
         <div className="txt">
           <h1 className="product_name font-[400]">
-            {/* {truncatedProductName} */}
-            {props.product_name}
+            {truncatedProductName}
+            {/* {props.product_name} */}
           </h1>
           <h2 className="price mb-3">
             <span className="text-gray-500 font-[300] line-through mr-2 text-sm">

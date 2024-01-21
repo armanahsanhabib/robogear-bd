@@ -58,7 +58,7 @@ const ProductDetailsPage = () => {
     <div className="bg-gray-100 py-[50px]">
       <div className="container px-5 mx-auto">
         <div className="main_product grid gap-10 grid-cols-2">
-          <div className="left h-[450px] flex items-center justify-center bg-white rounded-xl overflow-hidden">
+          <div className="left h-[450px] flex items-center justify-center bg-white rounded-xl overflow-hidden border">
             <img
               src={`https://robogear-bd-97bac4d16518.herokuapp.com/product_images/${productDetails.product_image}`}
               alt="product image"
@@ -111,7 +111,7 @@ const ProductDetailsPage = () => {
           </div>
         </div>
         <div className="bottom_details mt-[50px] grid gap-10 grid-cols-2">
-          <div className="details p-5 bg-white rounded-xl">
+          <div className="details p-5 bg-white rounded-xl border">
             <h2 className="text-xl font-semibold text-gray-800">Description</h2>
             <hr className="mt-3 mb-5" />
             <p className="text-gray-500 font-[300]">
@@ -125,7 +125,7 @@ const ProductDetailsPage = () => {
               ther package.
             </p>
           </div>
-          <div className="reviews p-5 bg-white rounded-xl">
+          <div className="reviews p-5 bg-white rounded-xl border">
             <h2 className="text-xl font-semibold text-gray-800">Reviews</h2>
             <hr className="mt-3 mb-5" />
             {!reviews.length && (
