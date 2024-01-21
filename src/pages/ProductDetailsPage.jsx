@@ -36,7 +36,7 @@ const ProductDetailsPage = () => {
               className="transition-all object-cover"
             />
           </div>
-          <div className="right flex flex-col gap-y-5">
+          <div className="right flex flex-col gap-y-5 border bg-white p-5 rounded-xl">
             <h1 className="text-3xl font-semibold">Arduino UNO R3</h1>
             <p className="font-[300] text-gray-500">{`#CA5676245`}</p>
             <h2 className="price mb-3">
