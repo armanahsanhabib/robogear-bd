@@ -62,23 +62,28 @@ const Header = () => {
             <ul className="z-50 suggestion-list absolute left-0 top-[50px] max-h-[300px] w-full overflow-y-auto rounded border bg-gray-50 shadow">
               {suggestions.map((product) => (
                 <li
-                  className="cursor-pointer flex gap-3 border-b px-3 py-2 hover:bg-gray-100"
+                  className="cursor-pointer border-b px-3 py-2 hover:bg-gray-100"
                   key={product._id}
                   // onClick={() => handleSelectProduct(product)}
                 >
-                  <div className="left">
-                    <img
-                      src={`https://robogear-bd-97bac4d16518.herokuapp.com/product_images/${product.product_image}`}
-                      alt={product.product_name}
-                      className="h-[45px]"
-                    />
-                  </div>
-                  <div className="right">
-                    <h3 className="text-blue-600">{product.product_name}</h3>
-                    <p className="text-sm font-[300]">
-                      {`Price: ${product.selling_price}`}
-                    </p>
-                  </div>
+                  <a
+                    href={`/product-details?id=${product.product_id}`}
+                    className="flex gap-3"
+                  >
+                    <div className="left">
+                      <img
+                        src={`https://robogear-bd-97bac4d16518.herokuapp.com/product_images/${product.product_image}`}
+                        alt={product.product_name}
+                        className="h-[45px]"
+                      />
+                    </div>
+                    <div className="right">
+                      <h3 className="text-blue-600">{product.product_name}</h3>
+                      <p className="text-sm font-[300]">
+                        {`Price: ${product.selling_price}`}
+                      </p>
+                    </div>
+                  </a>
                 </li>
               ))}
             </ul>

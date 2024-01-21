@@ -62,7 +62,7 @@ const ProductDetailsPage = () => {
             <img
               src={`https://robogear-bd-97bac4d16518.herokuapp.com/product_images/${productDetails.product_image}`}
               alt="product image"
-              className="transition-all object-cover"
+              className="transition-all h-full w-auto object-contain"
             />
           </div>
           <div className="right flex flex-col gap-y-5 border bg-white p-5 rounded-xl">
