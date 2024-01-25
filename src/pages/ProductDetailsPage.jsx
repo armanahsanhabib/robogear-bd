@@ -55,18 +55,18 @@ const ProductDetailsPage = () => {
   }, [productId]);
 
   return (
-    <div className="bg-gray-100 py-[50px]">
-      <div className="container px-5 mx-auto">
-        <div className="main_product grid gap-10 grid-cols-2">
-          <div className="left h-[450px] flex items-center justify-center bg-white rounded-xl overflow-hidden border">
+    <div className="bg-gray-100 lg:py-[50px] py-3">
+      <div className="container lg:px-5 px-2 mx-auto">
+        <div className="main_product grid gap-5 lg:grid-cols-2 grid-cols-1">
+          <div className="left lg:h-[450px] h-[350px] flex items-center justify-center bg-white rounded-xl overflow-hidden border">
             <img
               src={`https://robogear-bd-97bac4d16518.herokuapp.com/product_images/${productDetails.product_image}`}
               alt="product image"
               className="transition-all h-full w-auto object-contain"
             />
           </div>
-          <div className="right flex flex-col gap-y-5 border bg-white p-5 rounded-xl">
-            <h1 className="text-3xl font-semibold">
+          <div className="right flex flex-col lg:gap-y-5 gap-y-3 border bg-white p-5 rounded-xl">
+            <h1 className="lg:text-3xl text-xl font-semibold">
               {productDetails.product_name}
             </h1>
             <p className="font-[300] text-gray-500">{`#RGBD-${productDetails.product_id}`}</p>
@@ -99,18 +99,16 @@ const ProductDetailsPage = () => {
               </span>
             </div>
             <div className="add_cart">
-              <button className="rounded-lg bg-blue-500 hover:bg-blue-600 w-[300px] py-3 text-white font-[500]">
+              <button className="rounded-lg bg-blue-500 hover:bg-blue-600 lg:w-[300px] w-full lg:py-3 py-2 text-white font-[500]">
                 Add to Cart
               </button>
             </div>
             <div className="add_cart">
-              <button className="rounded-lg bg-rose-500 hover:bg-rose-600 w-[300px] py-3 text-white font-[500]">
+              <button className="rounded-lg bg-rose-500 hover:bg-rose-600 lg:w-[300px] w-full lg:py-3 py-2 text-white font-[500]">
                 Add to Wishlist
               </button>
             </div>
           </div>
-        </div>
-        <div className="bottom_details mt-[50px] grid gap-10 grid-cols-2">
           <div className="details p-5 bg-white rounded-xl border">
             <h2 className="text-xl font-semibold text-gray-800">Description</h2>
             <hr className="mt-3 mb-5" />

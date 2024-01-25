@@ -9,7 +9,7 @@ import ProductCard from "../components/common/home/ProductCard";
 
 const HomePage = (props) => {
   return (
-    <div className="bg-gray-100 py-[50px]">
+    <div className="bg-gray-100 md:py-[50px] py-3">
       <div className="container px-5 mx-auto">
         <div className="hero grid gap-5 grid-cols-4 grid-rows-2">
           <div className="lg:col-span-2 col-span-4 row-span-2 lg:h-full h-[400px]">
@@ -34,7 +34,7 @@ const HomePage = (props) => {
               </button>
             </a>
           </div>
-          <div className="product_container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-5">
+          <div className="product_container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 md:gap-5 gap-2">
             {props.products.map((products) => (
               <ProductCard
                 key={products._id}
