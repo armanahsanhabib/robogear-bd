@@ -11,7 +11,7 @@ const HomePage = (props) => {
     <div className="bg-gray-100 lg:py-[50px] md:py-5 py-3">
       <div className="container md:px-5 px-2 mx-auto">
         <div className="hero grid md:gap-5 gap-3 grid-cols-4 grid-rows-2">
-          <div className="lg:col-span-2 col-span-4 row-span-2 lg:h-full h-[400px]">
+          <div className="lg:col-span-2 col-span-4 row-span-2 lg:h-full md:h-[400px] h-[250px]">
             <ImageSlider />
           </div>
           <div className="ad1 lg:col-span-2 col-span-4">

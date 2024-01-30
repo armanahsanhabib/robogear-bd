@@ -39,12 +39,12 @@ const ImageSlider = () => {
         backgroundPosition: "center",
       }}
     >
-      <div className="slider_dots absolute bottom-[20px] left-[50%] -translate-x-[50%] px-2 py-2 rounded-full bg-gray-50">
+      <div className="slider_dots absolute md:bottom-[20px] bottom-2 left-[50%] -translate-x-[50%] px-2 py-2 rounded-full bg-gray-50">
         <ul className="dots flex items-center gap-x-1">
           {images.map((_, index) => (
             <li
               key={index}
-              className={`circle w-3 h-3 ${
+              className={`circle md:w-3 w-2 md:h-3 h-2 ${
                 index === currentImageIndex ? "bg-gray-600" : "bg-gray-300"
               } rounded-full`}
             ></li>
@@ -52,13 +52,13 @@ const ImageSlider = () => {
         </ul>
       </div>
       <div
-        className="prev_control absolute left-[10px] top-[50%] -translate-y-[50%] p-3 cursor-pointer text-xl"
+        className="prev_control absolute md:left-[10px] left-0 top-[50%] -translate-y-[50%] p-3 cursor-pointer text-xl"
         onClick={prevImage}
       >
         <GrPrevious />
       </div>
       <div
-        className="next_control absolute right-[10px] top-[50%] -translate-y-[50%] p-3 cursor-pointer text-xl"
+        className="next_control absolute md:right-[10px] right-0 top-[50%] -translate-y-[50%] p-3 cursor-pointer text-xl"
         onClick={nextImage}
       >
         <GrNext />
