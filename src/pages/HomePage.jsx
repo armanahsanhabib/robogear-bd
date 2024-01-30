@@ -4,14 +4,13 @@ import Ad1 from "../assets/images/home/ad1.jpg";
 import Ad2 from "../assets/images/home/ad2.jpg";
 import Ad3 from "../assets/images/home/ad3.jpg";
 import ImageSlider from "../components/common/home/ImageSlider";
-import MoreProductsCard from "../components/common/home/MoreProductsCard";
 import ProductCard from "../components/common/home/ProductCard";
 
 const HomePage = (props) => {
   return (
-    <div className="bg-gray-100 md:py-[50px] py-3">
-      <div className="container px-5 mx-auto">
-        <div className="hero grid gap-5 grid-cols-4 grid-rows-2">
+    <div className="bg-gray-100 lg:py-[50px] md:py-5 py-3">
+      <div className="container md:px-5 px-2 mx-auto">
+        <div className="hero grid md:gap-5 gap-3 grid-cols-4 grid-rows-2">
           <div className="lg:col-span-2 col-span-4 row-span-2 lg:h-full h-[400px]">
             <ImageSlider />
           </div>
@@ -25,11 +24,13 @@ const HomePage = (props) => {
             <img src={Ad3} alt="ad3" className="rounded-lg h-full" />
           </div>
         </div>
-        <div className="popular_products pt-[50px]">
-          <div className="top flex justify-between items-center mb-[30px]">
-            <h2 className="text-2xl font-semibold">Popular products</h2>
+        <div className="popular_products md:pt-[50px] pt-8">
+          <div className="top flex justify-between items-center md:mb-[30px] mb-5">
+            <h2 className="md:text-2xl text-xl font-semibold">
+              Popular products
+            </h2>
             <a href="/products">
-              <button className="px-5 py-2 rounded-full bg-blue-200 hover:bg-blue-300 transition-all flex items-center gap-x-2">
+              <button className="px-5 py-2 md:text-base text-sm rounded-full bg-blue-200 hover:bg-blue-300 transition-all flex items-center gap-x-2">
                 All Products <GrNext />
               </button>
             </a>
@@ -42,9 +43,10 @@ const HomePage = (props) => {
                 selling_price={products.selling_price}
                 product_image={products.product_image}
                 productId={products.product_id}
+                handleCartClick={props.handleCartClick}
               />
             ))}
-            <MoreProductsCard />
+            {/* <MoreProductsCard /> */}
           </div>
         </div>
       </div>

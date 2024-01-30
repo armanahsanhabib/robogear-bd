@@ -8,17 +8,17 @@ const ProductCard = (props) => {
       : props.product_name;
 
   return (
-    <div className="p-3 bg-white rounded-lg hover:shadow-lg border transition-all flex flex-col justify-between">
+    <div className="md:p-3 p-2 bg-white rounded-lg hover:shadow-lg border transition-all flex flex-col justify-between">
       <a href={`/product-details?id=${props.productId}`}>
         <div className="img flex flex-col justify-center items-center mb-3">
           <img
             src={`https://robogear-bd-97bac4d16518.herokuapp.com/product_images/${props.product_image}`}
             alt={props.product_name}
-            className="h-[200px] w-full rounded-lg object-cover"
+            className="md:h-[200px] h-[180px] w-full rounded-lg object-cover"
           />
         </div>
         <div className="txt">
-          <h1 className="product_name font-[400]">
+          <h1 className="product_name md:text-base text-sm font-[400]">
             {truncatedProductName}
             {/* {props.product_name} */}
           </h1>
@@ -36,7 +36,10 @@ const ProductCard = (props) => {
         </div>
       </a>
       <div className="add_cart">
-        <button className="rounded-lg bg-blue-500 hover:bg-blue-600 w-full py-2 text-white font-[500] flex items-center justify-center gap-2">
+        <button
+          className="rounded-lg bg-blue-500 hover:bg-blue-600 w-full py-2 text-white font-[500] flex items-center justify-center gap-2"
+          onClick={() => props.handleCartClick()}
+        >
           <FaCartPlus className="text-xl" />{" "}
           <span className="text-sm">Add to Cart</span>
         </button>

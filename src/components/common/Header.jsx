@@ -14,7 +14,7 @@ const Header = () => {
     const fetchSuggestions = async () => {
       try {
         const response = await fetch(
-          "https://robogear-bd-97bac4d16518.herokuapp.com/products/all-product"
+          "https://robogear-bd-97bac4d16518.herokuapp.com/products/all-products"
         );
         const data = await response.json();
 
