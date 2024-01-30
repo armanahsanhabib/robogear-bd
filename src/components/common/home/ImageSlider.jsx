@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import Banar1 from "../../../assets/images/home/slider-image1.jpg";
 import Banar2 from "../../../assets/images/home/slider-image2.jpg";

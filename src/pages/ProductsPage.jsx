@@ -16,6 +16,8 @@ const ProductsPage = (props) => {
                 product_name={products.product_name}
                 selling_price={products.selling_price}
                 product_image={products.product_image}
+                productId={products.product_id}
+                handleCartClick={props.handleCartClick}
               />
             ))}
           </div>
