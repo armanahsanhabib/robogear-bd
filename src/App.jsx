@@ -19,7 +19,7 @@ const App = () => {
   const fetchProductsData = async () => {
     try {
       const response = await fetch(
-        "https://robogear-bd-97bac4d16518.herokuapp.com/products/all-product"
+        "https://robogear-bd-97bac4d16518.herokuapp.com/products/all-products"
       );
 
       if (!response.ok) {
