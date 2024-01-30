@@ -23,7 +23,7 @@ const Navbar = () => {
 
   return (
     <div className="navbar bg-blue-100 sticky top-0 left-0 z-30">
-      <div className="container px-5 py-3 mx-auto flex items-center justify-between">
+      <div className="container md:px-5 px-2 py-3 mx-auto flex items-center justify-between">
         <div className="left">
           <nav>
             <ul className="flex items-center gap-x-3">
