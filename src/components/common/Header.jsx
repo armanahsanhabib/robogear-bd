@@ -39,13 +39,20 @@ const Header = () => {
 
   return (
     <header>
-      <div className="container px-5 mx-auto py-[20px] flex items-center justify-between">
+      <div className="container md:px-5 px-3 mx-auto md:py-[20px] py-3 flex items-center justify-between">
         <div className="logo">
           <a href="/">
-            <img src={RobogearLogo} alt="logo" className="h-[50px] w-auto" />
+            <img
+              src={RobogearLogo}
+              alt="logo"
+              className="md:h-[50px] h-[40px] w-auto"
+            />
           </a>
         </div>
-        <div className="relative search xl:w-[500px] lg:w-[300px] md:w-[500px] mx-[50px]">
+        <button className="md:hidden flex gap-2 bg-gray-100 items-center px-8 py-2 text-sm border rounded-full">
+          Search <BsSearch />
+        </button>
+        <div className="relative md:block hidden search xl:w-[500px] lg:w-[350px] md:w-[500px] w-[180px] mx-[50px]">
           <input
             type="text"
             name="search_product"
@@ -114,9 +121,9 @@ const Header = () => {
             </div>
           </div>
         </div>
-        <div className="menu block lg:hidden text-2xl">
+        <button className="menu block lg:hidden text-2xl">
           <FaBars />
-        </div>
+        </button>
       </div>
     </header>
   );
