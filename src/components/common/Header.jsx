@@ -49,8 +49,8 @@ const Header = () => {
             />
           </a>
         </div>
-        <button className="md:hidden flex gap-2 bg-gray-100 items-center px-8 py-2 text-sm border-2 rounded-full">
-          Search <BsSearch />
+        <button className="md:hidden mr-3 text-sm flex gap-2 ml-auto bg-gray-100 items-center px-3 py-1 border-2 rounded-full">
+          <BsSearch className="text-base" /> Search
         </button>
         <div className="relative md:block hidden search xl:w-[500px] lg:w-[350px] md:w-[500px] w-[180px] mx-[50px]">
           <input

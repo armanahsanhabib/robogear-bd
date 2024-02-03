@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import RobotBg from "../assets/images/home-made-robot-desk.jpg";
 
 const LoginSignup = () => {
