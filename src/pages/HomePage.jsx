@@ -36,16 +36,19 @@ const HomePage = (props) => {
             </a>
           </div>
           <div className="product_container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 md:gap-5 gap-2">
-            {props.products.map((products) => (
-              <ProductCard
-                key={products._id}
-                product_name={products.product_name}
-                selling_price={products.selling_price}
-                product_image={products.product_image}
-                productId={products.product_id}
-                handleCartClick={props.handleCartClick}
-              />
-            ))}
+            {props.products.map(
+              (products, index) =>
+                index < 12 && (
+                  <ProductCard
+                    key={products._id}
+                    product_name={products.product_name}
+                    selling_price={products.selling_price}
+                    product_image={products.product_image}
+                    productId={products.product_id}
+                    handleCartClick={props.handleCartClick}
+                  />
+                )
+            )}
             {/* <MoreProductsCard /> */}
           </div>
         </div>

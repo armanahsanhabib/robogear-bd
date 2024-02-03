@@ -14,7 +14,7 @@ import TutorialsPage from "./pages/TutorialsPage";
 
 const App = () => {
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
+  // const [cart, setCart] = useState([]);
 
   // fetch all products data
   const fetchProductsData = async () => {

@@ -45,7 +45,7 @@ const Header = () => {
             <img
               src={RobogearLogo}
               alt="logo"
-              className="md:h-[50px] h-[40px] w-auto"
+              className="md:h-[50px] h-[35px] w-auto"
             />
           </a>
         </div>
