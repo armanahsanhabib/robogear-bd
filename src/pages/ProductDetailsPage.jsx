@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -35,15 +36,11 @@ const ProductDetailsPage = () => {
   // fetch product details data
   const fetchProductDetailsData = async () => {
     try {
-      const response = await fetch(
-        `https://robogear-bd-97bac4d16518.herokuapp.com/products/product-details?id=${productId}`
+      const response = await axios.get(
+        `https://server.robogearbd.com/product/product-details/${productId}`
       );
 
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-
-      const result = await response.json();
+      const result = response.data;
       setProductDetails(result);
     } catch (error) {
       console.error("Error fetching data:", error.message);
@@ -52,7 +49,7 @@ const ProductDetailsPage = () => {
 
   useEffect(() => {
     fetchProductDetailsData();
-  });
+  }, []);
 
   return (
     <div className="bg-gray-100 lg:py-[50px] py-3">
@@ -60,7 +57,7 @@ const ProductDetailsPage = () => {
         <div className="main_product grid gap-5 lg:grid-cols-2 grid-cols-1">
           <div className="left lg:h-[450px] h-[350px] flex items-center justify-center bg-white md:rounded-xl rounded-lg overflow-hidden border">
             <img
-              src={`https://robogear-bd-97bac4d16518.herokuapp.com/product_images/${productDetails.product_image}`}
+              src={`https://server.robogearbd.com/product_images/${productDetails.product_image}`}
               alt="Product image"
               className="transition-all h-full w-auto object-contain"
             />
@@ -121,7 +118,7 @@ const ProductDetailsPage = () => {
               <a
                 href={`https://www.google.com/search?q=${encodeURIComponent(
                   productDetails.product_name
-                )}`}
+                )} robogear bd`}
                 className="text-blue-600 hover:underline"
                 target="blank"
               >

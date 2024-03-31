@@ -1,4 +1,3 @@
-import React from "react";
 import { CiCircleMore } from "react-icons/ci";
 
 const MoreProductsCard = () => {

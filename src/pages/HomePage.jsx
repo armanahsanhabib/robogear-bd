@@ -3,8 +3,8 @@ import { GrNext } from "react-icons/gr";
 import Ad1 from "../assets/images/home/ad1.jpg";
 import Ad2 from "../assets/images/home/ad2.jpg";
 import Ad3 from "../assets/images/home/ad3.jpg";
-import ImageSlider from "../components/common/home/ImageSlider";
-import ProductCard from "../components/common/home/ProductCard";
+import ImageSlider from "../components/home/ImageSlider";
+import ProductCard from "../components/home/ProductCard";
 
 const HomePage = (props) => {
   return (
@@ -38,7 +38,7 @@ const HomePage = (props) => {
           <div className="product_container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 md:gap-5 gap-2">
             {props.products.map(
               (products, index) =>
-                index < 12 && (
+                index < 24 && (
                   <ProductCard
                     key={products._id}
                     product_name={products.product_name}
@@ -50,6 +50,13 @@ const HomePage = (props) => {
                 )
             )}
             {/* <MoreProductsCard /> */}
+          </div>
+          <div className="pagination flex items-center gap-3 justify-center mt-12">
+            <a href="/products">
+              <button className="px-5 py-2 md:text-base text-sm rounded-full bg-blue-200 hover:bg-blue-300 transition-all flex items-center gap-x-2">
+                View All Products <GrNext />
+              </button>
+            </a>
           </div>
         </div>
       </div>

@@ -1,25 +1,12 @@
 /* eslint-disable react/prop-types */
-import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
 import { AiOutlineShoppingCart, AiOutlineUser } from "react-icons/ai";
 import { FaHome } from "react-icons/fa";
-import { GoHeart } from "react-icons/go";
-import { IoMdClose } from "react-icons/io";
+// import { GoHeart } from "react-icons/go";
 import { useLocation } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = (props) => {
   const location = useLocation();
   const currentPath = location.pathname;
-  const [loginWindow, setLoginWindow] = useState(false);
-  const [isLogin, setIsLogin] = useState(true);
-
-  const handleSwitch = () => {
-    setIsLogin(!isLogin);
-  };
-
-  const handleLoginClick = () => {
-    setLoginWindow(!loginWindow);
-  };
 
   return (
     <div className="navbar bg-blue-100 sticky top-0 left-0 z-30">
@@ -47,106 +34,47 @@ const Navbar = () => {
         </div>
         <div className="right">
           <ul className="flex items-center gap-x-3">
-            <button
-              className={`rounded-full px-5 py-2 text-[14px] hidden lg:inline-block transition-all hover:bg-blue-300`}
-              onClick={() => handleLoginClick()}
-            >
-              Login/Signup
-            </button>
-            <NavRound href="my-account" icon={AiOutlineUser} />
-            <NavRound href="wishlist" icon={GoHeart} count="0" />
-            <NavRound
-              additionalStyle="text-white bg-blue-600"
-              href="cart"
-              icon={AiOutlineShoppingCart}
-              count="0"
-            />
+            {!props.authenticated ? (
+              <a
+                className={`rounded-full px-5 py-2 text-[14px] hidden lg:inline-block transition-all hover:bg-blue-500 hover:text-white bg-blue-300`}
+                // onClick={() => props.setLoginWindow(true)}
+                href="/login"
+              >
+                Login/Signup
+              </a>
+            ) : (
+              <div className="flex items-center gap-x-3">
+                {/* <button
+                  className={`rounded-full px-5 py-2 text-[14px] hidden lg:inline-block transition-all hover:bg-blue-300`}
+                  onClick={() => props.setLogOutConfirmation(true)}
+                >
+                  Log Out
+                </button> */}
+                {/* <NavRound href="/my-account" icon={AiOutlineUser} /> */}
+                <li
+                  className={`relative bg-white h-[40px] flex items-center px-4 hover:bg-gray-50 justify-center rounded-full`}
+                >
+                  <a
+                    href="/my-account"
+                    className={`flex text-sm items-center gap-1`}
+                  >
+                    <AiOutlineUser className="text-[20px]" />{" "}
+                    {/* {`${props.userData.fullName.split(" ")[0]}`} */}
+                    My Account
+                  </a>
+                </li>
+                {/* <NavRound href="/wishlist" icon={GoHeart} count="0" /> */}
+                <NavRound
+                  additionalStyle="text-white bg-blue-600"
+                  href="/my-cart"
+                  icon={AiOutlineShoppingCart}
+                  count="0"
+                />
+              </div>
+            )}
           </ul>
         </div>
       </div>
-      <AnimatePresence>
-        {loginWindow && (
-          <div className="fixed h-screen w-screen left-0 top-0 bg-[#00000080] flex items-center justify-center">
-            <div className="container px-5 mx-auto">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.5 }} // Initial animation properties
-                animate={{ opacity: 1, scale: 1 }} // Animation properties
-                // exit={{ opacity: 0, scale: 0.5 }} // Exit animation properties
-                transition={{ duration: 0.3 }} // Animation duration
-                className="relative overflow-hidden max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg"
-              >
-                <h1 className="text-2xl font-bold mb-8">
-                  {isLogin ? "Login" : "Sign Up"}
-                </h1>
-                <form>
-                  {/* Common Fields for both Login and Signup */}
-                  <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      className="border rounded w-full py-2 px-3 outline-none transition-all focus:outline-blue-500"
-                      placeholder="Enter your email"
-                    />
-                  </div>
-                  <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2">
-                      Password
-                    </label>
-                    <input
-                      type="password"
-                      className="border rounded w-full py-2 px-3"
-                      placeholder="Enter your password"
-                    />
-                  </div>
-
-                  {/* Additional Fields for Sign Up */}
-                  {!isLogin && (
-                    <div className="mb-4">
-                      <label className="block text-gray-700 text-sm font-bold mb-2">
-                        Confirm Password
-                      </label>
-                      <input
-                        type="password"
-                        className="border rounded w-full py-2 px-3"
-                        placeholder="Confirm your password"
-                      />
-                    </div>
-                  )}
-
-                  {/* Login or Sign Up Button */}
-                  <button
-                    type="submit"
-                    className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
-                  >
-                    {isLogin ? "Login" : "Sign Up"}
-                  </button>
-                </form>
-
-                {/* Switch between Login and Sign Up */}
-                <p className="mt-4">
-                  {isLogin
-                    ? "Don't have an account?"
-                    : "Already have an account?"}{" "}
-                  <span
-                    className="text-blue-500 cursor-pointer"
-                    onClick={handleSwitch}
-                  >
-                    {isLogin ? "Sign Up" : "Login"}
-                  </span>
-                </p>
-                <button
-                  className="absolute top-0 right-0 p-3 text-2xl bg-gray-200 text-rose-600"
-                  onClick={() => handleLoginClick()}
-                >
-                  <IoMdClose />
-                </button>
-              </motion.div>
-            </div>
-          </div>
-        )}
-      </AnimatePresence>
     </div>
   );
 };

@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import { FaBars } from "react-icons/fa";
@@ -13,10 +14,10 @@ const Header = () => {
   useEffect(() => {
     const fetchSuggestions = async () => {
       try {
-        const response = await fetch(
-          "https://robogear-bd-97bac4d16518.herokuapp.com/products/all-products"
+        const response = await axios.get(
+          "https://server.robogearbd.com/product/all-products"
         );
-        const data = await response.json();
+        const data = response.data;
 
         const filteredSuggestions = data.filter((product) =>
           product.product_name
@@ -79,7 +80,7 @@ const Header = () => {
                   >
                     <div className="left">
                       <img
-                        src={`https://robogear-bd-97bac4d16518.herokuapp.com/product_images/${product.product_image}`}
+                        src={`https://server.robogearbd.com/product_images/${product.product_image}`}
                         alt={product.product_name}
                         className="h-[45px]"
                       />

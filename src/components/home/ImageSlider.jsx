@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { GrNext, GrPrevious } from "react-icons/gr";
-import Banar1 from "../../../assets/images/home/slider-image1.jpg";
-import Banar2 from "../../../assets/images/home/slider-image2.jpg";
-import Banar3 from "../../../assets/images/home/slider-image3.jpg";
+import Banar1 from "../../assets/images/home/slider-image1.jpg";
+import Banar2 from "../../assets/images/home/slider-image2.jpg";
+import Banar3 from "../../assets/images/home/slider-image3.jpg";
 
 const ImageSlider = () => {
   const images = [Banar1, Banar2, Banar3];
