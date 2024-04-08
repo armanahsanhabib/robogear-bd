@@ -1,9 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-const ProductDetailsPage = () => {
+const ProductDetailsPage = (props) => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const productId = queryParams.get("id");
@@ -37,7 +38,9 @@ const ProductDetailsPage = () => {
   const fetchProductDetailsData = async () => {
     try {
       const response = await axios.get(
-        `https://server.robogearbd.com/product/product-details/${productId}`
+        `${
+          import.meta.env.VITE_SERVER_URI
+        }/product/product-details/${productId}`
       );
 
       const result = response.data;
@@ -57,7 +60,9 @@ const ProductDetailsPage = () => {
         <div className="main_product grid gap-5 lg:grid-cols-2 grid-cols-1">
           <div className="left lg:h-[450px] h-[350px] flex items-center justify-center bg-white md:rounded-xl rounded-lg overflow-hidden border">
             <img
-              src={`https://server.robogearbd.com/product_images/${productDetails.product_image}`}
+              src={`${import.meta.env.VITE_SERVER_URI}/product_images/${
+                productDetails.product_image
+              }`}
               alt="Product image"
               className="transition-all h-full w-auto object-contain"
             />
@@ -99,10 +104,15 @@ const ProductDetailsPage = () => {
               </span>
             </div>
             <div className="buttons mt-2 flex lg:flex-col lg:gap-3 gap-5">
-              <button className="rounded-lg bg-blue-500 hover:bg-blue-600 lg:w-[300px] w-full py-3 text-white font-[500]">
+              <button
+                className="rounded-lg bg-blue-500 hover:bg-blue-600 lg:w-[300px] w-full py-3 text-white font-[500]"
+                onClick={() =>
+                  props.handleCartClick(productDetails._id, quantity)
+                }
+              >
                 Add to Cart
               </button>
-              <button className="rounded-lg bg-emerald-500 hover:bg-emerald-600 lg:w-[300px] w-full py-3 text-white font-[500]">
+              <button className="rounded-lg cursor-not-allowed bg-emerald-500 hover:bg-emerald-600 lg:w-[300px] w-full py-3 text-white font-[500]">
                 Buy Now
               </button>
             </div>

@@ -34,7 +34,7 @@ const SignupPage = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://server.robogearbd.com/user/create-user", // Replace with your backend URL
+        `${import.meta.env.VITE_SERVER_URI}/user/create-user`,
         formData
       );
 

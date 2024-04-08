@@ -5,7 +5,7 @@ const MoreProductsCard = () => {
     <div className="p-3 bg-white rounded-lg hover:shadow-lg transition-all">
       <a
         href="/products"
-        className="bg-blue-50 hover:bg-blue-500 rounded-lg transition-all hover:text-white text-blue-600 block h-full w-full flex gap-y-3 flex-col items-center justify-center"
+        className="bg-blue-50 hover:bg-blue-500 rounded-lg transition-all hover:text-white text-blue-600 h-full w-full flex gap-y-3 flex-col items-center justify-center"
       >
         <div className="icon text-[80px]">
           <CiCircleMore />

@@ -32,7 +32,7 @@ const LoginPage = (props) => {
     try {
       // Make POST request using Axios
       const response = await axios.post(
-        "https://server.robogearbd.com/user/user-authentication",
+        `${import.meta.env.VITE_SERVER_URI}/user/user-authentication`,
         {
           phone,
           password,
@@ -42,8 +42,8 @@ const LoginPage = (props) => {
       if (response.status === 200) {
         props.setAuthenticated(true);
         localStorage.setItem("authenticated", "true");
-        props.setUserData(response.data);
-        localStorage.setItem("userData", JSON.stringify(response.data));
+        props.setUserId(response.data);
+        localStorage.setItem("userId", response.data);
         toast.success("Login successful!", {
           position: "top-center",
           autoClose: 3000,

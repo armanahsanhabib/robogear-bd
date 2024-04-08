@@ -23,17 +23,32 @@ const Footer = () => {
               </h2>
               <ul className="flex items-center gap-x-3 justify-center lg:justify-start">
                 <li>
-                  <a href="/" className="xl:text-3xl text-2xl text-sky-700">
+                  <a
+                    href="https://www.facebook.com/RoboGearBDShop"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="xl:text-3xl text-2xl text-sky-700"
+                  >
                     <FaFacebook />
                   </a>
                 </li>
                 <li>
-                  <a href="/" className="xl:text-3xl text-2xl text-green-600">
+                  <a
+                    href="https://wa.me/8801750467924"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="xl:text-3xl text-2xl text-green-600"
+                  >
                     <FaWhatsapp />
                   </a>
                 </li>
                 <li>
-                  <a href="/" className="xl:text-3xl text-2xl text-rose-600">
+                  <a
+                    href="https://www.youtube.com/@RoboGearBD"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="xl:text-3xl text-2xl text-rose-600"
+                  >
                     <FaYoutube />
                   </a>
                 </li>
@@ -43,16 +58,16 @@ const Footer = () => {
               <h3 className="font-semibold md:mb-6 mb-3">Categories</h3>
               <ul className="flex flex-col md:gap-y-3 gap-y-1 font-[300] text-gray-500">
                 <li>
-                  <a href="/">Arduino and boards</a>
+                  <a>Arduino and boards</a>
                 </li>
                 <li>
-                  <a href="/">Sensors and Transistors</a>
+                  <a>Sensors and Transistors</a>
                 </li>
                 <li>
-                  <a href="/">Microcontroller & IC</a>
+                  <a>Microcontroller & IC</a>
                 </li>
                 <li>
-                  <a href="/">Tools and Accessories</a>
+                  <a>Tools and Accessories</a>
                 </li>
               </ul>
             </div>
@@ -60,16 +75,16 @@ const Footer = () => {
               <h3 className="font-semibold md:mb-6 mb-3">Useful Links</h3>
               <ul className="flex flex-col md:gap-y-3 gap-y-1 font-[300] text-gray-500">
                 <li>
-                  <a href="/">Terms and Conditions</a>
+                  <a>Terms and Conditions</a>
                 </li>
                 <li>
-                  <a href="/">How to place order</a>
+                  <a>How to place order</a>
                 </li>
                 <li>
-                  <a href="/">How to review</a>
+                  <a>How to review</a>
                 </li>
                 <li>
-                  <a href="/">How to make payment</a>
+                  <a>How to make payment</a>
                 </li>
               </ul>
             </div>
@@ -77,16 +92,40 @@ const Footer = () => {
               <h3 className="font-semibold md:mb-6 mb-3">Reach Us</h3>
               <ul className="flex flex-col md:gap-y-3 gap-y-1 font-[300] text-gray-500">
                 <li>
-                  <a href="/">Like our Facebook Page</a>
+                  <a
+                    href="https://www.facebook.com/RoboGearBDShop"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Like our Facebook Page
+                  </a>
                 </li>
                 <li>
-                  <a href="/">Subscribe our Youtube Channel</a>
+                  <a
+                    href="https://www.youtube.com/@RoboGearBD"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Subscribe our Youtube Channel
+                  </a>
                 </li>
                 <li>
-                  <a href="/">Knock at Whatsapp</a>
+                  <a
+                    href="https://wa.me/8801704428814"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Knock at Whatsapp
+                  </a>
                 </li>
                 <li>
-                  <a href="/">Drop a mail</a>
+                  <a
+                    href="mailto:robogearbd@gmail.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Drop a mail
+                  </a>
                 </li>
               </ul>
             </div>

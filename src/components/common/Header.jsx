@@ -1,43 +1,10 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { BsSearch } from "react-icons/bs";
-import { FaBars } from "react-icons/fa";
+import { AiOutlineUser } from "react-icons/ai";
 import PhoneText from "../../assets/images/phone-text.svg";
 import RobogearLogo from "../../assets/images/robogear logo.png";
 import WorldGlobe from "../../assets/images/world-globe.svg";
+import SearchBar from "./SearchBar";
 
 const Header = () => {
-  // manage states for product suggestions list
-  const [suggestions, setSuggestions] = useState([]);
-  const [searchProduct, setSearchProduct] = useState("");
-
-  useEffect(() => {
-    const fetchSuggestions = async () => {
-      try {
-        const response = await axios.get(
-          "https://server.robogearbd.com/product/all-products"
-        );
-        const data = response.data;
-
-        const filteredSuggestions = data.filter((product) =>
-          product.product_name
-            .toLowerCase()
-            .includes(searchProduct.toLowerCase())
-        );
-
-        setSuggestions(filteredSuggestions);
-      } catch (error) {
-        console.error("Error fetching suggestions:", error);
-      }
-    };
-
-    if (searchProduct) {
-      fetchSuggestions();
-    } else {
-      setSuggestions([]);
-    }
-  }, [searchProduct]);
-
   return (
     <header>
       <div className="container md:px-5 px-3 mx-auto md:py-[20px] py-3 flex items-center justify-between">
@@ -46,56 +13,12 @@ const Header = () => {
             <img
               src={RobogearLogo}
               alt="logo"
-              className="md:h-[50px] h-[35px] w-auto"
+              className="lg:h-[50px] h-[35px] w-auto"
             />
           </a>
         </div>
-        <button className="md:hidden mr-3 text-sm flex gap-2 ml-auto bg-gray-100 items-center px-3 py-1 border-2 rounded-full">
-          <BsSearch className="text-base" /> Search
-        </button>
-        <div className="relative md:block hidden search xl:w-[500px] lg:w-[350px] md:w-[500px] w-[180px] mx-[50px]">
-          <input
-            type="text"
-            name="search_product"
-            id="search_product"
-            value={searchProduct}
-            onChange={(e) => setSearchProduct(e.target.value)}
-            className="w-full rounded-full border focus:outline-blue-600 px-5 py-2"
-            placeholder="Search for products..."
-          />
-          <button className="absolute top-[50%] -translate-y-[50%] right-2 rounded-full bg-blue-600 p-2 text-white">
-            <BsSearch />
-          </button>
-          {suggestions.length > 0 && (
-            <ul className="z-50 suggestion-list absolute left-0 top-[50px] max-h-[300px] w-full overflow-y-auto rounded border bg-gray-50 shadow">
-              {suggestions.map((product) => (
-                <li
-                  className="cursor-pointer border-b px-3 py-2 hover:bg-gray-100"
-                  key={product._id}
-                  // onClick={() => handleSelectProduct(product)}
-                >
-                  <a
-                    href={`/product-details?id=${product.product_id}`}
-                    className="flex gap-3"
-                  >
-                    <div className="left">
-                      <img
-                        src={`https://server.robogearbd.com/product_images/${product.product_image}`}
-                        alt={product.product_name}
-                        className="h-[45px]"
-                      />
-                    </div>
-                    <div className="right">
-                      <h3 className="text-blue-600">{product.product_name}</h3>
-                      <p className="text-sm font-[300]">
-                        {`Price: ${product.selling_price}`}
-                      </p>
-                    </div>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          )}
+        <div className="search_bar lg:block hidden search xl:w-[500px] lg:w-[350px] md:w-[500px] w-[180px] mx-[50px]">
+          <SearchBar />
         </div>
         <div className="right hidden lg:flex items-center gap-x-8">
           <div className="contact flex gap-x-2 items-center">
@@ -122,9 +45,18 @@ const Header = () => {
             </div>
           </div>
         </div>
-        <button className="menu block lg:hidden text-2xl">
-          <FaBars />
-        </button>
+        <div
+          className={`relative lg:hidden bg-blue-600 h-[40px] lg:w-auto flex items-center px-4 hover:bg-blue-500 justify-center rounded-full`}
+        >
+          <a
+            href="/my-account"
+            className={`flex text-sm items-center gap-1 text-white`}
+          >
+            <AiOutlineUser className="text-[20px]" />{" "}
+            {/* {`${props.userData.fullName.split(" ")[0]}`} */}
+            <span className="">My Account</span>
+          </a>
+        </div>
       </div>
     </header>
   );

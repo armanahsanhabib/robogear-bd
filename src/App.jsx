@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "./components/common/Footer";
 import Header from "./components/common/Header";
@@ -21,9 +21,12 @@ const App = () => {
   const [authenticated, setAuthenticated] = useState(
     localStorage.getItem("authenticated") === "true"
   );
-  const [userData, setUserData] = useState(
-    JSON.parse(localStorage.getItem("userData")) || {}
-  );
+  const [userId, setUserId] = useState(localStorage.getItem("userId") || "");
+  const [currentCartItem, setCurrentItem] = useState({
+    _id: "",
+    qty: 1,
+  });
+  const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
     localStorage.setItem("authenticated", authenticated);
@@ -33,7 +36,7 @@ const App = () => {
   const fetchProductsData = async () => {
     try {
       const response = await axios.get(
-        "https://server.robogearbd.com/product/all-products"
+        `${import.meta.env.VITE_SERVER_URI}/product/all-products`
       );
 
       if (response.status !== 200) {
@@ -47,23 +50,87 @@ const App = () => {
     }
   };
 
+  const fetchCart = async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_SERVER_URI}/user/user-data/${userId}`
+      );
+
+      if (response.status !== 200) {
+        throw new Error("Network response was not ok");
+      }
+
+      const result = response.data;
+
+      setCartItems(result.cart);
+    } catch (error) {
+      console.error("Error fetching data:", error.message);
+    }
+  };
+
   useEffect(() => {
     fetchProductsData();
+    fetchCart();
   }, []);
 
-  const handleCartClick = () => {
-    console.log("clicked");
+  const handleCartClick = async (_id, qty) => {
+    if (!authenticated) {
+      toast.error("Login first to add product!", {
+        autoClose: 3000,
+        position: "top-center",
+      });
+    } else {
+      try {
+        const response = await axios.put(
+          `${import.meta.env.VITE_SERVER_URI}/user/add-to-cart`,
+          {
+            userId,
+            productId: _id,
+            qty: qty,
+          }
+        );
+
+        if (response.status === 200) {
+          // If the item is successfully added to the cart, update the cart items state
+          setCartItems(response.data.user.cart);
+          toast.success("Item added to cart successfully!", {
+            autoClose: 3000,
+            position: "top-center",
+          });
+        } else {
+          toast.error("Failed to add item to cart!", {
+            autoClose: 3000,
+            position: "top-center",
+          });
+        }
+      } catch (error) {
+        console.error("Error adding item to cart:", error.message);
+        toast.error("Failed to add item to cart!", {
+          autoClose: 3000,
+          position: "top-center",
+        });
+      }
+    }
   };
 
   return (
     <Router>
       <Header />
-      <Navbar userData={userData} authenticated={authenticated} />
+      <Navbar
+        userId={userId}
+        authenticated={authenticated}
+        cartLength={cartItems.length}
+      />
       <Routes>
         <Route
           path="/"
           element={
-            <HomePage products={products} handleCartClick={handleCartClick} />
+            <HomePage
+              products={products}
+              handleCartClick={handleCartClick}
+              setCurrentItem={setCurrentItem}
+              currentCartItem={currentCartItem}
+            />
           }
         />
         <Route
@@ -72,13 +139,14 @@ const App = () => {
             <ProductsPage
               products={products}
               handleCartClick={handleCartClick}
+              setCurrentItem={setCurrentItem}
+              currentCartItem={currentCartItem}
             />
           }
         />
         <Route
           path="/product-details"
-          element={<ProductDetailsPage />}
-          handleCartClick={handleCartClick}
+          element={<ProductDetailsPage handleCartClick={handleCartClick} />}
         />
         <Route path="/tutorials" element={<TutorialsPage />} />
         <Route
@@ -86,24 +154,42 @@ const App = () => {
           element={
             <LoginPage
               setAuthenticated={setAuthenticated}
-              setUserData={setUserData}
+              setUserId={setUserId}
             />
+          }
+        />
+        <Route
+          path="/my-account"
+          element={
+            authenticated ? (
+              <MyAccount
+                userId={userId}
+                setUserId={setUserId}
+                authenticated={authenticated}
+                setAuthenticated={setAuthenticated}
+              />
+            ) : (
+              <LoginPage
+                setAuthenticated={setAuthenticated}
+                setUserId={setUserId}
+              />
+            )
           }
         />
         {authenticated && (
           <Route
-            path="/my-account"
+            path="/my-cart"
             element={
-              <MyAccount
-                userData={userData}
-                setUserData={setUserData}
-                authenticated={authenticated}
-                setAuthenticated={setAuthenticated}
+              <MyCart
+                userId={userId}
+                products={products}
+                cartItems={cartItems}
+                fetchCart={fetchCart}
+                fetchProductsData={fetchProductsData}
               />
             }
           />
         )}
-        {authenticated && <Route path="/my-cart" element={<MyCart />} />}
         {!authenticated && <Route path="/sign-up" element={<SignupPage />} />}
         <Route path="*" element={<ErrorPage />} />
       </Routes>

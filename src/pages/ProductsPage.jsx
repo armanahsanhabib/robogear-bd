@@ -37,11 +37,13 @@ const ProductsPage = (props) => {
             {currentItems.map((product) => (
               <ProductCard
                 key={product._id}
+                _id={product._id}
                 product_name={product.product_name}
                 selling_price={product.selling_price}
                 product_image={product.product_image}
                 productId={product.product_id}
                 handleCartClick={props.handleCartClick}
+                cartItemQty={props.currentCartItem.qty}
               />
             ))}
           </div>

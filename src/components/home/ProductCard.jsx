@@ -12,7 +12,9 @@ const ProductCard = (props) => {
       <a href={`/product-details?id=${props.productId}`}>
         <div className="img flex flex-col justify-center items-center mb-3">
           <img
-            src={`https://server.robogearbd.com/product_images/${props.product_image}`}
+            src={`${import.meta.env.VITE_SERVER_URI}/product_images/${
+              props.product_image
+            }`}
             alt={props.product_name}
             className="md:h-[200px] h-[180px] w-full rounded-lg object-cover"
           />
@@ -38,7 +40,7 @@ const ProductCard = (props) => {
       <div className="add_cart">
         <button
           className="rounded-lg bg-blue-500 hover:bg-blue-600 w-full py-2 text-white font-[500] flex items-center justify-center gap-2"
-          onClick={() => props.handleCartClick()}
+          onClick={() => props.handleCartClick(props._id, props.cartItemQty)}
         >
           <FaCartPlus className="text-xl" />{" "}
           <span className="text-sm">Add to Cart</span>

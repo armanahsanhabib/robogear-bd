@@ -21,7 +21,7 @@ const MyAccount = (props) => {
   const fetchUserData = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/user/user-data/${props.userData._id}`
+        `${import.meta.env.VITE_SERVER_URI}/user/user-data/${props.userId}`
       );
 
       if (response.status !== 200) {
@@ -45,7 +45,7 @@ const MyAccount = (props) => {
     props.setAuthenticated(false);
     setLogOutConfirmation(false);
     localStorage.removeItem("authenticated");
-    localStorage.removeItem("userData"); // Remove userData on logout
+    localStorage.removeItem("userId"); // Remove userData on logout
     toast.success("Logout successful!", {
       position: "top-center",
       autoClose: 3000,
@@ -55,8 +55,8 @@ const MyAccount = (props) => {
 
   const UserDataLi = (props) => {
     return (
-      <li className="flex items-center text-gray-600">
-        <div className="w-[120px]">{props.tag}:</div>
+      <li className="flex items-center sm:text-base text-sm text-gray-600">
+        <div className="sm:w-[120px] w-[80px]">{props.tag}:</div>
         <div className="">{props.fullName}</div>
       </li>
     );
@@ -64,14 +64,13 @@ const MyAccount = (props) => {
 
   return (
     <div className="bg-gray-100">
-      <div className="container md:px-5 px-2 mx-auto py-[30px]">
-        <div className="all_products bg-white lg:pb-[50px] lg:pt-[40px] rounded-lg border px-[50px] md:py-5 py-3">
+      <div className="container md:px-5 px-2 mx-auto sm:py-[30px] py-3">
+        <div className="all_products bg-white lg:pb-[50px] lg:pt-[40px] rounded-lg border lg:px-[50px] sm:px-[25px] px-4 md:py-5 py-3">
           <div className="top flex justify-between items-center border-b pb-3 mb-5">
-            <h2 className="md:text-2xl text-xl font-semibold w-full">
-              My Account
-            </h2>
+            <h2 className="md:text-2xl text-xl font-semibold">My Account</h2>
             <button
-              className="rounded-full w-[120px] px-5 py-2 transition-all bg-blue-300 break-keep hover:bg-blue-500"
+              type="button"
+              className="rounded-full sm:text-base text-sm px-5 py-2 transition-all bg-blue-300 hover:bg-blue-500"
               onClick={() => setLogOutConfirmation(true)}
             >
               Log Out
@@ -103,57 +102,61 @@ const MyAccount = (props) => {
               <p className="text-gray-700 font-[300] mb-3">
                 You can view your order status from here,
               </p>
-              {userData.orders?.length > 0 ? (
-                <table className="w-full border-collapse border border-gray-300">
-                  <thead>
-                    <tr className="bg-blue-600 text-white">
-                      <th className="py-2 px-4 border">Order No.</th>
-                      <th className="py-2 px-4 border">Order Date</th>
-                      <th className="py-2 px-4 border">Payment Method</th>
-                      <th className="py-2 px-4 border">Total Bill</th>
-                      <th className="py-2 px-4 border">Payment Status</th>
-                      <th className="py-2 px-4 border">Order Status</th>
-                      <th className="py-2 px-4 border">View Details</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {userData.orders.map((order) => (
-                      <tr
-                        key={order.orderNo}
-                        className="border-b border-gray-300"
-                      >
-                        <td className="py-2 text-center px-4 border">
-                          #{order.orderNo}
-                        </td>
-                        <td className="py-2 text-center px-4 border">
-                          {order.orderDate}
-                        </td>
-                        <td className="py-2 text-center px-4 border">
-                          {order.paymentMethod}
-                        </td>
-                        <td className="py-2 text-center px-4 border">
-                          {order.totalBill.toFixed(2)} BDT
-                        </td>
-                        <td className="py-2 text-center px-4 border">
-                          {order.paymentStatus}
-                        </td>
-                        <td className="py-2 text-center px-4 border">
-                          {order.orderStatus}
-                        </td>
-                        <td className="py-2 text-center px-4 border">
-                          <button className="bg-blue-600 text-white py-1 px-3 rounded hover:bg-blue-700">
-                            View
-                          </button>
-                        </td>
+              <div className="table_container overflow-x-auto">
+                {userData.orders?.length > 0 ? (
+                  <table className="border-collapse border border-gray-300">
+                    <thead>
+                      <tr className="bg-blue-600 xl:text-base text-sm text-white">
+                        <th className="py-2 px-4 border">Order No.</th>
+                        <th className="py-2 px-4 border">Order Date</th>
+                        <th className="py-2 px-4 border">Payment Method</th>
+                        <th className="py-2 px-4 border">Total Bill</th>
+                        <th className="py-2 px-4 border">Payment Status</th>
+                        <th className="py-2 px-4 border">Order Status</th>
+                        <th className="py-2 px-4 border">View Details</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              ) : (
-                <div className="no_order italic border p-3 text-rose-500 bg-white">
-                  You don&apos;t have any order!
-                </div>
-              )}
+                    </thead>
+                    <tbody className="xl:text-base text-sm">
+                      {userData.orders.map((order) => (
+                        <tr
+                          key={order?.orderNo}
+                          className="border-b border-gray-300"
+                        >
+                          <td className="py-2 text-center px-4 border">
+                            #{order?.orderNo}
+                          </td>
+                          <td className="py-2 text-center px-4 border">
+                            {new Date(order?.orderDate).toLocaleDateString(
+                              "en-GB"
+                            )}
+                          </td>
+                          <td className="py-2 text-center px-4 border">
+                            {order?.paymentMethod}
+                          </td>
+                          <td className="py-2 text-center px-4 border">
+                            {order?.orderTotal.toFixed(2)} BDT
+                          </td>
+                          <td className="py-2 text-center px-4 border">
+                            {order?.paymentStatus}
+                          </td>
+                          <td className="py-2 text-center px-4 border">
+                            {order?.orderStatus}
+                          </td>
+                          <td className="py-2 text-center px-4 border">
+                            <button className="bg-blue-600 text-white py-1 px-3 rounded hover:bg-blue-700">
+                              View
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                ) : (
+                  <div className="no_order italic border p-3 text-rose-500 bg-white">
+                    You don&apos;t have any order!
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
